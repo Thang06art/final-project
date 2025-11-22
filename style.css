@@ -1,0 +1,134 @@
+/* --- BASE STYLES (MOBILE VIEW) - YÊU CẦU 4 --- */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #dedede;
+    padding: 5px;
+    margin: 15px;
+    font-size: 25px;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 1.95em;
+}
+
+h2 {
+    text-align: center;
+}
+
+li {
+    margin-top: 20px;
+}
+
+.label {
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* --- GRID & IMAGE STYLES (MOBILE DEFAULT) --- */
+/* Yêu cầu 4a: Lưới 1 cột, khoảng cách 10px */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 10px;
+}
+
+/* Định dạng ảnh mặc định */
+img {
+    border: 5px solid blue;
+    border-radius: 35px;
+    width: 100%; /* Đảm bảo ảnh co giãn theo ô lưới */
+    display: block; /* Loại bỏ khoảng trắng thừa dưới ảnh */
+}
+
+/* Định dạng caption cho đẹp hơn (tùy chọn) */
+figure {
+    margin: 0; /* Reset margin mặc định của thẻ figure */
+}
+
+figcaption {
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding-top: 5px;
+}
+
+
+/* --- TABLET VIEW (YÊU CẦU 5) --- */
+/* Kích hoạt ở 772px */
+@media screen and (min-width: 772px) {
+    .grid {
+        /* Yêu cầu 5a: Lưới 2 cột */
+        grid-template-columns: 1fr 1fr;
+    }
+
+    img {
+        /* Yêu cầu 5b: Hình tròn (border-radius 50%) */
+        border-radius: 50%;
+    }
+
+    /* Yêu cầu 5c: Hình cuối cùng chiếm cả 2 cột */
+    .grid figure:last-child {
+        grid-column: 1 / -1; /* Span toàn bộ chiều ngang */
+    }
+}
+
+
+/* --- DESKTOP VIEW (YÊU CẦU 6) --- */
+/* Kích hoạt ở 992px */
+@media screen and (min-width: 992px) {
+    .grid {
+        /* Yêu cầu 6a: Thông thường Desktop sẽ là 3 cột. 
+           (Lưu ý: Dịch giả yêu cầu "mỗi con số thứ 3 chiếm 2 cột" có thể là lỗi dịch thuật của khóa học. 
+           Chuẩn bài này thường là chuyển sang 3 cột). 
+           Tôi sẽ để 3 cột cho giao diện đẹp chuẩn Desktop */
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid figure:last-child {
+        /* Reset lại quy tắc của Tablet, để hình cuối không chiếm hết dòng nữa (nếu muốn) 
+           hoặc giữ nguyên tùy ý thích. Ở đây tôi reset về mặc định auto */
+        grid-column: auto;
+    }
+
+    img {
+        /* Yêu cầu 6b: Xóa bo tròn (về vuông) */
+        border-radius: 0;
+    }
+}
+
+
+/* --- REDUCED MOTION (YÊU CẦU 7) --- */
+/* Người dùng thích giảm chuyển động */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        /* Yêu cầu 7a: Xóa hành vi cuộn mượt */
+        scroll-behavior: auto;
+    }
+}
+
+
+/* --- DARK MODE (YÊU CẦU 8) --- */
+/* Giả sử bảng màu mặc định là sáng, tạo truy vấn cho màu tối */
+@media (prefers-color-scheme: dark) {
+    body {
+        /* Yêu cầu 8a: Nền màu tối */
+        background-color: #333333;
+        /* Yêu cầu 8b: Chữ màu nhạt (ví dụ vàng) */
+        color: #ffff00; /* Yellow */
+    }
+
+    /* Cập nhật màu chữ cho các thẻ tiêu đề nếu chúng không tự kế thừa */
+    h1, h2, figcaption {
+        color: #ffff00;
+    }
+
+    img {
+        /* Yêu cầu 8c: Viền ảnh màu đen */
+        border-color: #000000;
+    }
+}
